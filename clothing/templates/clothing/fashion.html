@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dress Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .dress-card {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .dress-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        .dress-card:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dress Collection</h2>
+        {% for dress in Clothing %}
+        <div class="dress-card">
+            <img src="{{ dress.image.url }}" alt="{{ dress.name }}">
+            <div>
+                <h3>{{ dress.name }}</h3>
+                <p>Size: {{ dress.size }}</p>
+                <p>Color: {{ dress.color }}</p>
+                <p>Price: ${{ dress.price }}</p>
+                <p>{{ dress.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
