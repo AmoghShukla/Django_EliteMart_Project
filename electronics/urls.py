@@ -1,6 +1,6 @@
 from django.urls import path
-from clothing import views
+from electronics import views
 
 urlpatterns = [
-    path('clothing/', views.clothing, name='clothing'),
+    path('', views.home, name='home'),
 ]

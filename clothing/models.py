@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class DRESS(models.Model):
+class product(models.Model):
     SIZE_CHOICES = [
         ('XS', 'Extra Small'),
         ('S', 'Small'),
@@ -34,7 +34,6 @@ class DRESS(models.Model):
     color = models.CharField(max_length=10, choices=COLOR_CHOICES, default='Red')
     price = models.DecimalField(max_digits=10, decimal_places=1)
     image = models.ImageField(upload_to='product_img/')
-    description = models.TextField()
 
     def __str__(self):
         return self.name
