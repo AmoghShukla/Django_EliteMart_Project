@@ -102,8 +102,10 @@
                 <h3>{{ product.name }}</h3>
                 <p>Size: {{ product.size }}</p>
                 <p>Color: {{ product.color }}</p>
-                <p class="price">$ {{ product.price }}</p>
+                <p class="price">₹ {{ product.price }}</p>
                 <p>{{ product.description }}</p>
+                <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Delete</a>
             </div>
             {% endfor %}
         </div>
