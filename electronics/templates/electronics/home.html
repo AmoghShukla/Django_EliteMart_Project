@@ -3,30 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Product List | Flipkart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #e8f5e9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
+        body {
+            background-color: #f8f9fa;
+        }
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2c3e50;
+            padding: 15px 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 26px;  /* Bigger font size */
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Product Grid */
         .container {
-            width: 90%;
-            max-width: 1200px;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
             justify-content: center;
+            gap: 25px;
+            padding: 40px;
         }
         .card {
             background: #ffffff;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             width: 320px;
             text-align: center;
             transition: all 0.3s ease-in-out;
@@ -34,71 +68,108 @@
             overflow: hidden;
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .product-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .ribbon {
+            position: absolute;
+            top: 12px;
+            right: -10px;
+            background: #e74c3c;
+            color: white;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         h2 {
             color: #2c3e50;
+            font-size: 22px;
             margin-bottom: 10px;
         }
         p {
             color: #7f8c8d;
             font-size: 14px;
+            margin-bottom: 10px;
         }
         .price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #388e3c;
+            color: #27ae60;
             margin-top: 10px;
         }
         .btn {
             display: inline-block;
             margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #66bb6a;
+            padding: 12px 20px;
+            background-color: #3498db;
             color: #ffffff;
             border: none;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s ease-in-out;
         }
         .btn:hover {
-            background-color: #43a047;
+            background-color: #2980b9;
         }
-        .ribbon {
-            position: absolute;
-            top: 10px;
-            right: -10px;
-            background: #f39c12;
-            color: white;
-            padding: 5px 15px;
-            font-size: 12px;
-            font-weight: bold;
-            transform: rotate(45deg);
-        }
-        .product-img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+    <div class="logo-container">
+        <a class="logo" href="{% url 'flipkart_home' %}">EliteMart</a>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'home_flipkart' %}">Home</a>
+        <a href="{% url 'clothing' %}">Clothing</a>
+        <a href="{% url 'grocery' %}">Grocery</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </div>
+</nav>
+
+
+    <!-- Product Listing -->
     <div class="container">
         {% for pro in prod %}
         <div class="card">
             {% if pro.is_featured %}
             <div class="ribbon">🔥 Featured</div>
             {% endif %}
-            <img src="{{ pro.image_url }}" alt="{{ pro.name }}" class="product-img">
+            <img src="{{ pro.image.url }}" alt="{{ pro.name }}" class="product-img">
             <h2>🌟 {{ pro.name }}</h2>
             <p>📖 {{ pro.desc }}</p>
-            <p class="price">💲{{ pro.price }}</p>
+            <p class="price">₹{{ pro.price }}</p>
             <a href="#" class="btn">🛒 Buy Now</a>
+            <a href="{% url 'add_to_cart' pro.id 'electronics' %}" class="btn btn-success">🛒 Add to Cart</a>
         </div>
         {% endfor %}
     </div>
+
 </body>
 </html>

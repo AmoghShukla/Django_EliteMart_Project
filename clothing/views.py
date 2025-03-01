@@ -36,4 +36,20 @@ def delete_product(request, product_id):
     
     return render(request, 'clothing/confirm_delete.html',{'product':product})
 
+def fashion(request):
+    return render(request, 'clothing/fashion.html')
+
+def about(request):
+    return render(request, 'clothing/About.html')
+
+def contact(request):
+    return render(request, 'clothing/Contact.html')
+
+def electronics(request):
+    return render(request, 'electronics/home.html')
+
+def home_flipkart(request):
+    return render(request, 'flipkart/home.html')
+
+
     
