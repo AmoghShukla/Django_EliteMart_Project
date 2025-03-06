@@ -1,6 +1,6 @@
 from django.urls import path
-from electronics import views  # ✅ Import the whole views module
+from electronics import views 
 
 urlpatterns = [
-    path('', views.home, name='electronics'),  # ✅ Home page for electronics
+    path('', views.home, name='electronics'),  
 ]
