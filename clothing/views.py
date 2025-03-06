@@ -18,7 +18,7 @@ def edit_product(request, product_id):
     Product = get_object_or_404(product, id=product_id)
 
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES, instance=Product) # request.POST = Text File, 
+        form = ProductForm(request.POST, request.FILES, instance=Product)  
         if form.is_valid():
             form.save()
             return redirect('clothing')
