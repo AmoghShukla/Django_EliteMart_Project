@@ -9,6 +9,7 @@ class product(models.Model):
         ('L', 'Large'),
         ('XL', 'Extra Large'),
         ('XXL', 'Double Extra Large'),
+        ('XXXL', 'Triple Extra Large'),
     ]
 
     COLOR_CHOICES = [
